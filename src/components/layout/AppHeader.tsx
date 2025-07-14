@@ -43,7 +43,12 @@ export default function AppHeader() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault()
     if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`)
+      const params = new URLSearchParams()
+      const encodedSearchQuery = encodeURIComponent(searchQuery.trim())
+      params.set("idNumber", encodedSearchQuery)
+      params.set("noticeNumber", encodedSearchQuery)
+      params.set("vehicleRegistration", encodedSearchQuery)
+      router.push(`/search?${params.toString()}`)
       setIsSearchOpen(false)
       setSearchQuery("")
     }

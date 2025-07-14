@@ -6,12 +6,40 @@ export async function searchFines(params: SearchParams): Promise<TrafficFine[]> 
   // Simulate API delay
   await new Promise((resolve) => setTimeout(resolve, 1000))
 
-  return trafficFines.filter((fine) => {
-    if (params.idNumber && fine.driverIdNumber !== params.idNumber) return false
-    if (params.noticeNumber && fine.noticeNumber !== params.noticeNumber) return false
-    if (params.vehicleRegistration && fine.vehicleRegistration !== params.vehicleRegistration) return false
-    return true
-  })
+  const activeParams = Object.keys(params).filter(
+    (key) => params[key as keyof SearchParams]
+  )
+
+  if (activeParams.length === 1) {
+    // Fine-grained search (AND logic for the single active parameter)
+    const paramName = activeParams[0] as keyof SearchParams
+    const paramValue = params[paramName]
+
+    return trafficFines.filter((fine) => {
+      if (paramName === "idNumber") return fine.driverIdNumber === paramValue
+      if (paramName === "noticeNumber") return fine.noticeNumber === paramValue
+      if (paramName === "vehicleRegistration") return fine.vehicleRegistration === paramValue
+      return false
+    })
+  } else if (activeParams.length > 1) {
+    // Broader search (OR logic for multiple active parameters)
+    return trafficFines.filter((fine) => {
+      let match = false
+      if (params.idNumber) {
+        match = match || fine.driverIdNumber === params.idNumber
+      }
+      if (params.noticeNumber) {
+        match = match || fine.noticeNumber === params.noticeNumber
+      }
+      if (params.vehicleRegistration) {
+        match = match || fine.vehicleRegistration === params.vehicleRegistration
+      }
+      return match
+    })
+  } else {
+    // No search parameters provided, return all fines or an empty array
+    return [] // Or return trafficFines if you want to show all when no search is active
+  }
 }
 
 export async function getFineById(id: string): Promise<TrafficFine | null> {
