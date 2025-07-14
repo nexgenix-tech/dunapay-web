@@ -1,103 +1,186 @@
-import Image from "next/image";
+import Link from "next/link"
+import { CheckCircle, Shield, Clock, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import SearchForm from "@/components/SearchForm"
+import { municipalities } from "@/lib/dummy-data"
 
-export default function Home() {
+export default function HomePage() {
+  const supportedMunicipalities = municipalities.filter((m) => m.isSupported)
+
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-gradient-to-br from-[#8FBC8F] to-[#6B8E23] text-white py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl lg:text-6xl font-bold mb-6">Pay Traffic Fines Online</h1>
+            <p className="text-xl lg:text-2xl mb-8 text-green-100">
+              Quick, secure, and convenient payments for South African municipalities
+            </p>
+          </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+          <SearchForm />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      {/* Features Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#36454F] mb-4">Why Choose dunaPAY?</h2>
+            <p className="text-lg text-gray-600">The easiest way to pay your traffic fines online</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-[#8FBC8F] rounded-full flex items-center justify-center mb-4">
+                  <Shield className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-[#36454F]">Secure Payments</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>Bank-grade security with SSL encryption for all transactions</CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-[#8FBC8F] rounded-full flex items-center justify-center mb-4">
+                  <Clock className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-[#36454F]">Instant Processing</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>Pay your fines instantly and receive immediate confirmation</CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-[#8FBC8F] rounded-full flex items-center justify-center mb-4">
+                  <Users className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-[#36454F]">Multiple Municipalities</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>Support for major municipalities across South Africa</CardDescription>
+              </CardContent>
+            </Card>
+
+            <Card className="text-center">
+              <CardHeader>
+                <div className="mx-auto w-12 h-12 bg-[#8FBC8F] rounded-full flex items-center justify-center mb-4">
+                  <CheckCircle className="h-6 w-6 text-white" />
+                </div>
+                <CardTitle className="text-[#36454F]">Easy to Use</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <CardDescription>Simple search and payment process in just a few clicks</CardDescription>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#36454F] mb-4">How It Works</h2>
+            <p className="text-lg text-gray-600">Pay your traffic fines in three simple steps</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="mx-auto w-16 h-16 bg-[#6B8E23] rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                1
+              </div>
+              <h3 className="text-xl font-semibold text-[#36454F] mb-2">Search</h3>
+              <p className="text-gray-600">
+                Enter your ID number, notice number, or vehicle registration to find your fines
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="mx-auto w-16 h-16 bg-[#6B8E23] rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                2
+              </div>
+              <h3 className="text-xl font-semibold text-[#36454F] mb-2">Review</h3>
+              <p className="text-gray-600">
+                Review your fine details, check for available discounts, and confirm payment amount
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="mx-auto w-16 h-16 bg-[#6B8E23] rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4">
+                3
+              </div>
+              <h3 className="text-xl font-semibold text-[#36454F] mb-2">Pay</h3>
+              <p className="text-gray-600">Complete your secure payment and receive instant confirmation</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Supported Municipalities */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-[#36454F] mb-4">Supported Municipalities</h2>
+            <p className="text-lg text-gray-600 mb-8">We currently support online payments for these municipalities</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+            {supportedMunicipalities.map((municipality) => (
+              <Card key={municipality.id} className="hover:shadow-md transition-shadow">
+                <CardHeader>
+                  <CardTitle className="text-[#36454F] flex items-center">
+                    <CheckCircle className="h-5 w-5 text-[#6B8E23] mr-2" />
+                    {municipality.name}
+                  </CardTitle>
+                  <CardDescription>{municipality.province}</CardDescription>
+                </CardHeader>
+              </Card>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <Link href="/municipalities">
+              <Button variant="outline" size="lg">
+                View All Municipalities
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-12 mb-4 bg-[#3A4851FF] text-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold mb-4">Ready to Pay Your Fines?</h2>
+          <p className="text-xl mb-8 text-gray-300">
+            Join thousands of South Africans who trust dunaPAY for their traffic fine payments
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/auth/register">
+              <Button size="lg" className="bg-[#6B8E23] hover:bg-[#4A7C59]">
+                Create Account
+              </Button>
+            </Link>
+            <Link href="/search">
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white text-white hover:bg-white hover:text-[#36454F] bg-transparent"
+              >
+                Search Fines
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
-  );
+  )
 }

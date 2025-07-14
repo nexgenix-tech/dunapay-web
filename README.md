@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# dunaPay Traffic Fine Payment Platform - Frontend
 
-## Getting Started
+This repository contains the frontend application for the dunaPay traffic fine payment platform. It is built using Next.js and serves as the user interface for motorists to interact with the system.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Data Handling
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Important Note:** This is purely the frontend application. All sensitive data, including traffic fine information and user authentication details, are handled by a separate backend API. 
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+For development and demonstration purposes, data is currently simulated using `lib/dummy-data.ts`. This means that any fine searches or user logins will only work with the predefined dummy data. Actual API URLs will be integrated once the backend development is complete.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Authentication
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Similar to data handling, user authentication is managed by the backend. If you attempt to log in with credentials not defined in `lib/dummy-data.ts`, the login will fail. This will be replaced with actual API authentication once the backend is ready.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project Functionality
+
+Motorists can:
+
+*   **Search for Traffic Fines:** Enter details to search for outstanding traffic fines. If a fine was issued by a supported municipality, it will be displayed.
+*   **Pay Fines:** Click to pay displayed fines, redirecting to PayFast for secure payment processing.
+*   **Register an Account:** Create an account for a personalized dashboard experience, allowing them to view their fine history and manage their details.
+
+
+
+## Attribution
+
+**Owner:** dunaPay (Contractor)
+
+**Authors:** NexGenix Technologies
+
+For any inquiries, please contact:
+*   Phone: 0715867165
+*   Email: valiant@nexgx.co.za or refiloevaliant@gmail.com
+
+
+
+
+---
+
+### A little joke for your day:
+
+Why did the traffic light turn red? Because it saw the car coming and didn't want to be embarrassed!
+
+
+
+## Technical Details
+
+### State Management
+This project utilizes `AppContext` for global state management, providing a centralized way to manage and access application-wide data.
+
+### API Integration
+All interactions with the backend RESTful API are centralized within `lib/api.ts`. This file will contain the necessary functions to consume the backend endpoints once they are available. For now, data is mocked using `lib/dummy-data.ts`.
+
+### Installation and Running
+
+To set up and run the project locally, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone <repository-url>
+    cd <repository-name>
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    # or yarn dev
+    ```
+
+    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+    You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+
+4.  **Build for production:**
+    ```bash
+    npm run build
+    # or yarn build
+    ```
+
+5.  **Start the production server:**
+    ```bash
+    npm start
+    # or yarn start
+    ```
+
+
