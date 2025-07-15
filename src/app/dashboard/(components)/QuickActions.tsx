@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Search, History, Settings, Plus, CreditCard, Bell, HelpCircle } from "lucide-react"
+import {  History, Settings, Plus, CreditCard, Bell, HelpCircle } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import type { User } from "@/lib/types"
@@ -10,14 +10,14 @@ interface QuickActionsProps {
 
 export default function QuickActions({ user }: QuickActionsProps) {
   const actions = [
-    {
-      title: "Search Fines",
-      description: "Find fines by ID or notice number",
-      icon: Search,
-      href: "/search",
-      color: "text-blue-600",
-      bgColor: "bg-blue-50"
-    },
+    // {
+    //   title: "Search Fines",
+    //   description: "Find fines by ID or notice number",
+    //   icon: Search,
+    //   href: "/search",
+    //   color: "text-blue-600",
+    //   bgColor: "bg-blue-50"
+    // },
     {
       title: "Add Vehicle",
       description: "Register a new vehicle",
